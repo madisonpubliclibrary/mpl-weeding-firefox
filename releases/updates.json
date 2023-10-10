@@ -1,0 +1,14 @@
+{
+  "addons": {
+    "mpl-weeding@lrschneider.com": {
+      "updates": [
+        { "version": "2023.07.18",
+          "update_link": "https://raw.githubusercontent.com/madisonpubliclibrary/mpl-weeding-firefox/master/releases/mpl-weeding-2023.07.18.xpi",
+          "applications": {
+            "gecko": { "strict_min_version": "58" }
+          }
+        }
+      ]
+    }
+  }
+}

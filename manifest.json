@@ -1,0 +1,51 @@
+{
+  "manifest_version": 2,
+  "name": "MPL Weeding Slip",
+  "short_name": "MPL Weeding",
+  "version": "2023.7.18",
+  "author": "Lucas Schneider",
+  "description": "Madison Public Library's tool for weeding catalog items.",
+  "homepage_url": "http://lrschneider.com",
+
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "mpl-weeding@lrschneider.com",
+      "update_url": "https://raw.githubusercontent.com/madisonpubliclibrary/mpl-weeding-firefox/master/releases/updates.json",
+      "strict_min_version": "79.0"
+    }
+  },
+
+  "icons": {
+    "16": "/png/mpl-weeding-16.png",
+    "32": "/png/mpl-weeding-32.png",
+    "48": "/png/mpl-weeding-48.png",
+    "64": "/png/mpl-weeding-64.png",
+    "128": "/png/mpl-weeding-128.png"
+  },
+
+  "browser_action": {
+    "default_title": "Weeding Slip",
+    "default_area": "navbar",
+    "browser_style": true,
+    "default_icon": {
+      "16": "/png/mpl-weeding-16.png",
+      "32": "/png/mpl-weeding-32.png",
+      "48": "/png/mpl-weeding-48.png",
+      "64": "/png/mpl-weeding-64.png",
+      "128": "/png/mpl-weeding-128.png"
+    }
+  },
+
+  "background": {
+    "scripts": [
+      "/background.js"
+    ]
+  },
+
+  "permissions": [
+    "menus",
+    "tabs",
+    "webNavigation",
+    "https://*.bibliovation.com/*"
+  ]
+}
