@@ -18,14 +18,19 @@ body {
 section {
   margin-top: 1em;
 }
-      
-section div,
-section p {
+   
+p, section div {
   font-weight: bold;      
 }
 
 section div span {
   font-weight: normal;      
+}
+
+.title {
+  text-align: center;
+  font-size: 1.25em;
+  font-weight: bold;
 }
       
 .boxed {
@@ -33,27 +38,34 @@ section div span {
   padding: 5px;
 }
 
-#title {
-  text-align: center;
-}
-
-#title, #toWrap {
-  font-size: 1.25em;
-}
-
-#to {
-  font-weight: bold;
-}      
-
-#to, #from {
-  text-transform: uppercase;
-}
-
-#detailsWrap {
-  text-align: justify;
-}
-
 .hide {
+  display: none;
+}
+
+#copies {
+  margin: 0 auto;
+  font-size: 16px;
+}
+
+#copies,
+#copies th,
+#copies td {
+  border: 1px solid #000;
+  border-collapse: collapse;
+}
+
+#copies th,
+#copies td {
+  padding: 2px 4px;
+}
+
+#reviewers > div {
+  margin-left: 20px;
+}
+
+#recLevelWrap,
+#noveListWrap,
+#seriesInfo {
   display: none;
 }
 

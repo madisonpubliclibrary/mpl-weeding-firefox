@@ -13,6 +13,7 @@
   const noveListWrap = document.getElementById("noveListWrap")
   const inNoveList = document.getElementById("inNoveList");
   const inSeries = document.getElementById("inSeries");
+  const seriesDetails = document.getElementById("seriesDetails")
   const seriesName = document.getElementById("seriesName");
   const seriesNumber = document.getElementById("seriesNumber");
   const booklist = document.getElementById("booklist");
@@ -47,6 +48,9 @@
         title.value = res.title;
         pubDate.value = res.pubDate;
         ccode.value = res.ccode;
+        nonMPLcopies.value = res.nonMPLcopies;
+        copyArray = res.mplItems;
+        fillCopyTable(copyArray);
         toggleNovelistCheckbox(ccode.value);
       });
     } else {
@@ -56,8 +60,29 @@
     }
   });
 
+  function fillCopyTable(items) {
+    const tbody = copies.tBodies[0];
+    for (let item of items) {
+      const row = document.createElement('tr');
+      let lib = document.createElement('td');
+      lib.textContent = item.mplLib;
+      if (item.hasOwnProperty("storage") && item.storage) lib.textContent += " (Storage)";
+      const circ = document.createElement('td');
+      circ.textContent = item.YTD + " / " + item.bvationCKO;
+      const status = document.createElement('td');
+      status.textContent = [item.lostStatus,item.dmgStatus,item.otherStatus].filter(e => !!e).join('; ');
+      const lastCKO = document.createElement('td');
+      lastCKO.textContent = item.lastCKO ? item.lastCKO.toLocaleDateString() : "Never";
+      row.append(lib,circ,status,lastCKO);
+
+      tbody.append(row);
+    }
+
+    copies.style.display = "table";
+  }
+
   function toggleNovelistCheckbox(ccode) {
-    let enableNoveList = ["BKAFI","BKAFIMY","BKAFIFA","BKAFISF"].includes(ccode)
+    let enableNoveList = ["BKAFI","BKAFIMY","BKAFIFA","BKAFISF"].includes(ccode);
     inNoveList.disabled = !enableNoveList;
     inNoveList.style.cursor = enableNoveList ? "pointer" : "not-allowed";
 
@@ -87,32 +112,35 @@
     noveListWrap.style.display = inNoveList.checked ? "block" : "none";
   });
 
+  inSeries.addEventListener("click", evt => {
+    seriesDetails.style.display = inSeries.checked ? "block" : "none";
+  });
+
   printForm.addEventListener("click", function() {
     if (false) {
       alert("Please check that all required fields have been filled in.");
     } else {
       browser.runtime.sendMessage({
-        "key": "printWeedingSli[p",
-        "data": [
-          ["title", title.value],
-          ["pubDate", pubDate.value],
-          ["ccode", ccode.value],
-          ["pubDate", pubDate.value],
-          ["notes", notes.value],
-          ["inCoreColl", inCoreColl.checked],
-          ["recLevel", recLevel.value],
-          ["inNoveList", inNoveList.checked],
-          ["inSeries", inSeries.checked],
-          ["seriesName", seriesName.value],
-          ["seriesNumber", seriesNumber.value],
-          ["booklist", booklist.checked],
-          ["pubWeekly", pubWeekly.checked],
-          ["libJournal", libJournal.checked],
-          ["kirkus", kirkus.checked],
-          ["awards", awards.checked],
-          ["copies", copyArray]
-          ["nonMPLcopies", nonMPLcopies.value]
-        ]
+        "key": "printWeedingSlip",
+        "data": {
+          "title": title.value,
+          "pubDate": pubDate.value,
+          "ccode": ccode.value,
+          "notes": notes.value,
+          "inCoreColl": inCoreColl.checked,
+          "recLevel": recLevel.value,
+          "inNoveList": inNoveList.checked,
+          "inSeries": inSeries.checked,
+          "seriesName": seriesName.value,
+          "seriesNumber": seriesNumber.value,
+          "booklist": booklist.checked,
+          "pubWeekly": pubWeekly.checked,
+          "libJournal": libJournal.checked,
+          "kirkus": kirkus.checked,
+          "awards": awards.checked,
+          "copies": copyArray,
+          "nonMPLcopies": nonMPLcopies.value
+        }
       });
     }
   });
@@ -137,6 +165,7 @@
     kirkus.checked = false;
     awards.checked = false;
     copies.tBodies[0].innerHTML = "";
+    copies.style.display = "none";
     copyArray = [];
     nonMPLcopies.value = "";
   }

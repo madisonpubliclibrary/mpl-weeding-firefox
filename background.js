@@ -45,10 +45,26 @@ browser.runtime.onMessage.addListener((data, sender) => {
         return browser.tabs.executeScript(tab.id, {
           "file": "/contentScripts/scrapeStatuses.js"
         }).then(resArr => {
-          //browser.tabs.remove(tab.id);
+          browser.tabs.remove(tab.id);
+          payload.mplItems = resArr[0].copies;
+          payload.nonMPLcopies = resArr[0].nonMPLcopies;
           return payload;
         });
       });
+    });
+  } else if (data.key === "printWeedingSlip") {
+    browser.tabs.create({
+      "active": false,
+      "url": browser.runtime.getURL("../html/printWeedingSlip.html")
+    }).then(tab => {
+      setTimeout(() => {
+        browser.tabs.sendMessage(tab.id, {
+          "key": "printWeedingSlip",
+          "data": data.data
+        }).then(() => {
+          //browser.tabs.remove(tab.id);
+        });
+      }, 500);
     });
   }
 });

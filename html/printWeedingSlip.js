@@ -22,22 +22,61 @@ let getCurrDate = function(bool) {
     d.getFullYear() + "-" + month + "-" + day;
 };
 
-browser.runtime.onMessage.addListener(message => {
-  if (message.key === "printProblemForm" ) {
-    for (let d of message.data) {
-      var elt = document.getElementById(d[0]);
+browser.runtime.onMessage.addListener(msg => {
+  const copies = document.getElementById("copies");
+  const inCoreColl = document.getElementById("inCoreColl");
+  const inNoveList = document.getElementById("inNoveList");
 
-      if (elt) {
-        if (d[0] === "ckiBySorter" && d[1] === "true") {
-          elt.classList.remove("hide");
-        } else {
-          if (/cCode|holds|copies|use|patronName|patronBarcode|patronPhone|patronEmail/.test(d[0]) && d[1] == "") {
-            document.getElementById(d[0]+"Wrap").classList.add("hide");
-          } else {
-            elt.textContent = d[1];
-          }
-        }
+  if (msg.key === "printWeedingSlip" ) {
+    const tbody = copies.tBodies[0];
+    for (let item of msg.data.copies) {
+      const row = document.createElement('tr');
+      let lib = document.createElement('td');
+      lib.textContent = item.mplLib;
+      if (item.hasOwnProperty("storage") && item.storage) lib.textContent += " (Storage)";
+      const circ = document.createElement('td');
+      circ.textContent = item.YTD + " / " + item.bvationCKO;
+      const status = document.createElement('td');
+      status.textContent = [item.lostStatus,item.dmgStatus,item.otherStatus].filter(e => !!e).join('; ');
+      const lastCKO = document.createElement('td');
+      lastCKO.textContent = item.lastCKO ? item.lastCKO.toLocaleDateString() : "Never";
+      row.append(lib,circ,status,lastCKO);
+      tbody.append(row);
+    }
+
+    document.getElementById("title").textContent = msg.data.title;
+    document.getElementById("pubDate").textContent = msg.data.pubDate;
+    document.getElementById("notes").textContent = msg.data.notes;
+    document.getElementById("nonMPLcopies").textContent = msg.data.nonMPLcopies;
+
+    if (msg.data.inCoreColl) {
+      document.getElementById('recLevelWrap').style.display = "block";
+      inCoreColl.textContent = "☑";
+      document.getElementById("recLevel").textContent = msg.data.recLevel;
+    } else {
+      inCoreColl.textContent = "☐";
+    }
+
+    if (msg.data.inNoveList) {
+      document.getElementById("noveListWrap").style.display = "block";
+      const inSeries = document.getElementById("inSeries");
+      inNoveList.textContent = "☑";
+      if (msg.data.inSeries) {
+        inSeries.textContent = "☑";
+        document.getElementById("seriesInfo").style.display = "block";
+        document.getElementById("seriesName").textContent = msg.data.seriesName;
+        document.getElementById("seriesNumber").textContent = msg.data.seriesNumber;
+      } else {
+        inSeries.textContent = "☐";
       }
+
+      document.getElementById("booklist").textContent = msg.data.booklist ? "☑" : "☐";
+      document.getElementById("pubWeekly").textContent = msg.data.pubWeekly ? "☑" : "☐";
+      document.getElementById("libJournal").textContent = msg.data.libJournal ? "☑" : "☐";
+      document.getElementById("kirkus").textContent = msg.data.kirkus ? "☑" : "☐";
+      document.getElementById("awards").textContent = msg.data.awards ? "☑" : "☐";
+    } else {
+      inNoveList.textContent = "☐";
     }
 
     window.print();

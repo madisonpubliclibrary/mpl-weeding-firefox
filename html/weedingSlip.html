@@ -69,13 +69,15 @@
             <input id="inSeries" type="checkbox">
             <label for="inSeries">Part of a series</label>
           </div>
-          <div>
-            <span class="fieldTitle">Series Name:</span>
-            <input id="seriesName" type="text">
-          </div>
-          <div>
-            <span class="fieldTitle">Series # of book in hand:</span>
-            <input id="seriesNumber" type="text">
+          <div id="seriesDetails">
+            <div>
+              <span class="fieldTitle">Series Name:</span>
+              <input id="seriesName" type="text">
+            </div>
+            <div>
+              <span class="fieldTitle">Series # of book in hand:</span>
+              <input id="seriesNumber" type="text">
+            </div>
           </div>
           <div>
             <span class="fieldTitle">Starred Reviews:</span>
@@ -108,7 +110,7 @@
   <section>
     <table id="copies">
       <thead>
-        <tr><th>Location</th><th>Status</th><th>Last Checked Out</th></tr>
+        <tr><th>Location</th><th>YTD / B'vation Circ</th><th>Status</th><th>Last Checked Out</th></tr>
       </thead>
       <tbody></tbody>
     </table>

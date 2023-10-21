@@ -131,7 +131,8 @@ legend a:hover {
 }
 
 #recLevelWrap,
-#noveListWrap {
+#noveListWrap,
+#seriesDetails {
   display: none;
 }
 

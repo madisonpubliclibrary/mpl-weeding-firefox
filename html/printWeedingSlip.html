@@ -4,53 +4,46 @@
 <head>
   <meta charset="utf-8" />
   <link rel="stylesheet" type="text/css" href="printWeedingSlip.css" />
-  <title>[printing] Problem Item Form</title>
+  <title>[printing] Withdrawal Slip</title>
 </head>
 
 <body>
-  <section id="title">
-    <p>Withdrawal Slip</p>
-  </section>
-  <section class="boxed" id="toWrap">
-    <div>Route To: <span id="to"><span></div>
-  </section>
-  <section id="sentFrom">
-    <div>Date: <span id="date"></span></div>
-    <div>From: <span id="from"></span></div>
-    <div>Staff name: <span id="staffName"></span></div>
-  </section>
-  <section>
-    <div id="typeWrap">Type: <span id="type"></span></div>
+  <p class="title">Withdrawal Slip</p>
+  <p id="title"></p>
+  <section id="copyWrap">
+    <table id="copies">
+      <thead>
+        <tr>
+          <th>Lib.</th><th>YTD / Circ</th><th>Status</th><th>Last CKO</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
   </section>
   <section>
-    <div id="idWrap">Problem identified and/or received by: <span id="idBy"></span></div>
-    <div id="receivedByWrap">Item received via: <span id="receivedBy"></span></div>
-    <div id="ckiBySorter" class="hide">&#10004; Item was checked in by an automatic sorter</div>
+    <div># of non-MPL Copies: <span id="nonMPLcopies"></span></div>
+    <div>Publication Date: <span id="pubDate"></span></div>
+    <div>Notes:<br><span id="notes"></span></div>
   </section>
-  <section class="boxed" id="detailsWrap">
-    <div>Details:&nbsp;<span id="details"></span></div>
+  <p class="title">Core Collections <span id="inCoreColl"></span></p>
+  <section  id="recLevelWrap" class="boxed">
+    <div>Recommendation Level: <span id="recLevel"></span></div>
   </section>
-  <section id="itemDetails">
-    <div id="itemTitleWrap">Item title: <span id="itemTitle"></span></div>
-    <div id="itemBarcodeWrap">Item Barcode: <span id="itemBarcode"></span></div>
-  </section>
-  <section>
-    <div>Patron information:</div>
-    <div id="patronWrap"><span id="patron"></span></div>
-    <div id="patronBarcodeWrap">BC: <span id="patronBarcode"></span></div>
-    <div id="patronPhoneWrap">PH: <span id="patronPhone"></span></div>
-    <div id="patronEmailWrap">EM: <span id="patronEmail"></span></div>
-  </section>
-  <section>
-    <div id="cCodeWrap">Collection Code: <span id="cCode"></span></div>
-    <div id="holdsWrap">Holds: <span id="holds"></span></div>
-    <div id="copiesWrap">Copies: <span id="copies"></span></div>
-    <div id="useWrap">Use: <span id="use"></span></div>
-  </section>
-  <section>
-    <div id="notifiedWrap">Notified on: <span id="notified"></span></div>
-    <div id="staffInitWrap">Staff Init.: <span id="staffInit"></span></div>
-    <div id="contactByWrap">Contacted Via: <span id="contactedVia"></span></div>
+  <p class="title">NoveList <span id="inNoveList"></span></p>
+  <section id="noveListWrap" class="boxed">
+    <p>In series? <span id="inSeries"></span></p>
+    <div id="seriesInfo">
+      <div>Series: <span id="seriesName"></span></div>
+      <div># in Series: <span id="seriesNumber"></span></div>
+    </div>
+    <p>Starred Reviews:</p>
+    <div id="reviewers">
+      <div><span id="booklist"></span> Booklist</div>
+      <div><span id="pubWeekly"></span> Publishers Weekly</div>
+      <div><span id="libJournal"></span> Library Journal</div>
+      <div><span id="kirkus"></span> Kirkus Reviews</div>
+    </div>
+    <div><span id="awards"></span> Award(s) won?</div>
   </section>
   <div id="spacer">.</div>
   <script type="text/javascript" src="printWeedingSlip.js"></script>
