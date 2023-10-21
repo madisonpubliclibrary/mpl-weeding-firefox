@@ -5,7 +5,13 @@
         { "version": "2023.10.21",
           "update_link": "https://raw.githubusercontent.com/madisonpubliclibrary/mpl-weeding-firefox/master/releases/mpl-weeding-2023.10.21.xpi",
           "applications": {
-            "gecko": { "strict_min_version": "58" }
+            "gecko": { "strict_min_version": "79" }
+          }
+        },
+        { "version": "2023.10.22",
+          "update_link": "https://raw.githubusercontent.com/madisonpubliclibrary/mpl-weeding-firefox/master/releases/mpl-weeding-2023.10.22.xpi",
+          "applications": {
+            "gecko": { "strict_min_version": "79" }
           }
         }
       ]

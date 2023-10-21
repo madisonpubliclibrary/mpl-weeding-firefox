@@ -44,7 +44,7 @@ browser.runtime.onMessage.addListener(msg => {
       tbody.append(row);
     }
 
-    document.getElementById("title").textContent = msg.data.title;
+    document.getElementById("title").textContent = msg.data.title + "(" + msg.data.barcode + ")";
     document.getElementById("pubDate").textContent = msg.data.pubDate;
     document.getElementById("notes").textContent = msg.data.notes;
     document.getElementById("nonMPLcopies").textContent = msg.data.nonMPLcopies;
@@ -78,6 +78,8 @@ browser.runtime.onMessage.addListener(msg => {
     } else {
       inNoveList.textContent = "☐";
     }
+
+    document.getElementById('today').textContent = getCurrDate(true);
 
     window.print();
   }

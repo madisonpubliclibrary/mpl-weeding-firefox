@@ -62,7 +62,7 @@ browser.runtime.onMessage.addListener((data, sender) => {
           "key": "printWeedingSlip",
           "data": data.data
         }).then(() => {
-          //browser.tabs.remove(tab.id);
+          browser.tabs.remove(tab.id);
         });
       }, 500);
     });

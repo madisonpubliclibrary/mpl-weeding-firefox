@@ -124,6 +124,7 @@
         "key": "printWeedingSlip",
         "data": {
           "title": title.value,
+          "barcode": barcode.value,
           "pubDate": pubDate.value,
           "ccode": ccode.value,
           "notes": notes.value,

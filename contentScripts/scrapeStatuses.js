@@ -100,8 +100,7 @@
                     const dmgSelect = document.querySelectorAll("#" + item.id + " .item-circ-status li:nth-of-type(" + (i+1) + ") .itemdata .form-control.damaged");
                     if (dmgSelect.length === 1) itemData.dmgStatus = dmgSelect[0].children[dmgSelect[0].selectedIndex].textContent;
                   } else if (statusRowsLabels[i].textContent.includes("Custom statuses")) {
-                    const otherSelect = document.querySelectorAll("#" + item.id + " .item-circ-status li:nth-of-type(" + (i+1) + ") .itemdata .form-control.itemstatus");
-                    if (otherSelect.length === 1) itemData.otherStatus = otherSelect[0].children[otherSelect[0].selectedIndex].textContent.replace("Apply custom status","");
+                    itemData.otherStatus = Array.from(document.querySelectorAll("#" + item.id + " .applied-statuses .label.statusname")).map(e=>e.textContent.trim()).join('; ');
                   }
                 }
     
