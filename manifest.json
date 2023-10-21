@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "MPL Weeding Slip",
   "short_name": "MPL Weeding",
-  "version": "2023.10.22",
+  "version": "2023.10.23",
   "author": "Lucas Schneider",
   "description": "Madison Public Library's tool for weeding catalog items.",
   "homepage_url": "http://lrschneider.com",
@@ -10,7 +10,7 @@
   "browser_specific_settings": {
     "gecko": {
       "id": "mpl-weeding@lrschneider.com",
-      "update_url": "https://raw.githubusercontent.com/madisonpubliclibrary/mpl-weeding-firefox/master/releases/updates.json",
+      "update_url": "https://raw.githubusercontent.com/madisonpubliclibrary/mpl-weeding-firefox/main/releases/updates.json",
       "strict_min_version": "79.0"
     }
   },
