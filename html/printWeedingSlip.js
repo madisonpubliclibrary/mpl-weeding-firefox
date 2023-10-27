@@ -44,7 +44,9 @@ browser.runtime.onMessage.addListener(msg => {
       tbody.append(row);
     }
 
-    document.getElementById("title").textContent = msg.data.title + "(" + msg.data.barcode + ")";
+    document.getElementById("title").textContent = msg.data.title;
+    document.getElementById("barcode").textContent = msg.data.barcode;
+    document.getElementById("ccode").textContent = msg.data.ccode;
     document.getElementById("pubDate").textContent = msg.data.pubDate;
     document.getElementById("notes").textContent = msg.data.notes;
     document.getElementById("nonMPLcopies").textContent = msg.data.nonMPLcopies;

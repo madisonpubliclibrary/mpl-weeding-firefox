@@ -19,6 +19,12 @@
           "applications": {
             "gecko": { "strict_min_version": "79" }
           }
+        },
+        { "version": "2023.10.26",
+          "update_link": "https://raw.githubusercontent.com/madisonpubliclibrary/mpl-weeding-firefox/main/releases/mpl-weeding-2023.10.26.xpi",
+          "applications": {
+            "gecko": { "strict_min_version": "79" }
+          }
         }
       ]
     }
